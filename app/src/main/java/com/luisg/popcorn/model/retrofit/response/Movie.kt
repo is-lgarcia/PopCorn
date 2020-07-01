@@ -1,4 +1,4 @@
-package com.luisg.popcorn.model
+package com.luisg.popcorn.model.retrofit.response
 
 data class Movie(
     val adult: Boolean,
