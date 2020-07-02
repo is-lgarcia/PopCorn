@@ -1,4 +1,4 @@
-package com.luisg.popcorn.ui.home
+package com.luisg.popcorn.view.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

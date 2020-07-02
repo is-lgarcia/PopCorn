@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_movie"
-        android:name="com.luisg.popcorn.ui.home.HomeFragment"
+        android:name="com.luisg.popcorn.view.MovieFragment"
         android:label="@string/title_movie"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_movie" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.luisg.popcorn.ui.dashboard.DashboardFragment"
+        android:name="com.luisg.popcorn.view.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.luisg.popcorn.ui.notifications.NotificationsFragment"
+        android:name="com.luisg.popcorn.view.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

@@ -16,7 +16,7 @@ class MovieDbClient {
                 if (field == null) {
                     instance = MovieDbClient()
                 }
-                return instance
+                return field
             }
     }
 

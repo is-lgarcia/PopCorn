@@ -1,4 +1,4 @@
-package com.luisg.popcorn.ui.notifications
+package com.luisg.popcorn.view.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater
