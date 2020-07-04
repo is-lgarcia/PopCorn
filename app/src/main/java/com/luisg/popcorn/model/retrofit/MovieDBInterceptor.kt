@@ -11,7 +11,7 @@ class MovieDBInterceptor: Interceptor {
             .url
             .newBuilder()
             .addQueryParameter(Constants.URL_PARAM_API_KEY, Constants.API_KEY_MOVIE_DB)
-            .addQueryParameter(Constants.URL_PARAM_API_KEY, Constants.SPANISH_LANGUAGE)
+            .addQueryParameter(Constants.URL_PARAM_LANGUAGE, Constants.SPANISH_LANGUAGE)
             .build()
 
         var request = chain.request()

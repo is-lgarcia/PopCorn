@@ -7,4 +7,5 @@
     <string name="edit_hint_search">Pelicula, Actor, Director...</string>
     <string name="title_popular">Populares</string>
     <string name="see_all">Ver todo</string>
+    <string name="title_top_rated">Mejor Valorados</string>
 </resources>
