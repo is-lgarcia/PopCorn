@@ -4,18 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.luisg.popcorn.R
 import com.luisg.popcorn.model.retrofit.response.Movie
+import com.luisg.popcorn.model.retrofit.response.MovieDetail
 import com.luisg.popcorn.model.retrofit.response.TopRatedMovie
 import com.luisg.popcorn.viewmodel.MovieViewModel
 import kotlinx.android.synthetic.main.fragment_movie.*
 
-class MovieFragment: Fragment(){
+class MovieFragment: Fragment(), MovieListener {
 
     private val model: MovieViewModel by activityViewModels()
     private lateinit var adapter: MovieAdapter
@@ -24,6 +27,8 @@ class MovieFragment: Fragment(){
     private var topRatedMovie: List<TopRatedMovie> = ArrayList()
     private lateinit var recyclerPopularMovie: RecyclerView
     private lateinit var recyclerTopRatedMovie: RecyclerView
+    private var itemMovieDetail: MutableList<MovieDetail> = ArrayList()
+
 
 
     override fun onCreateView(
@@ -56,7 +61,7 @@ class MovieFragment: Fragment(){
     }
 
     private fun loadPopularMovies(root: View) {
-        adapter = MovieAdapter(popularMovies)
+        adapter = MovieAdapter(popularMovies, this)
         recyclerPopularMovie = root.findViewById(R.id.recyclerPopularMovies)
         recyclerPopularMovie.setHasFixedSize(true)
         recyclerPopularMovie.layoutManager = LinearLayoutManager(
@@ -71,5 +76,16 @@ class MovieFragment: Fragment(){
         })
     }
 
+    /*private fun loadMovieDetail(){
 
+        for (movie in popularMovies){
+            val item = model.getMovieDetail(movie.id)
+            itemMovieDetail.add(item)
+        }
+    }*/
+
+    override fun getIdClicked(movie_id: Int) {
+        val bundle = bundleOf("movie_id" to movie_id)
+        findNavController().navigate(R.id.action_navigation_movie_to_movieDetailFragment2, bundle)
+    }
 }

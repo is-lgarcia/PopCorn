@@ -5,22 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.luisg.popcorn.R
 import com.luisg.popcorn.common.Constants
+import com.luisg.popcorn.common.MyApp
 import com.luisg.popcorn.model.retrofit.response.Movie
 
-class MovieAdapter(var mValues: List<Movie>) : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
-
-    private val mOnClickListener: View.OnClickListener
-
-    init {
-        mOnClickListener = View.OnClickListener {
-            val item = it.tag as Movie
-        }
-    }
-
+class MovieAdapter(var mValues: List<Movie>, val movieListener: MovieListener) : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -41,6 +35,9 @@ class MovieAdapter(var mValues: List<Movie>) : RecyclerView.Adapter<MovieAdapter
         holder.imageCover.load(Constants.IMAGE_BASE_URL + item.poster_path){
             crossfade(true)
             placeholder(R.drawable.ic_cine)
+        }
+        holder.itemView.setOnClickListener{
+            movieListener.getIdClicked(item.id)
         }
     }
 

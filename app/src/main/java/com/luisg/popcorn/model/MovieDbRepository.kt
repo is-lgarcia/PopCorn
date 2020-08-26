@@ -1,15 +1,13 @@
 package com.luisg.popcorn.model
 
 
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.luisg.popcorn.common.MyApp
 import com.luisg.popcorn.model.retrofit.MovieDbClient
 import com.luisg.popcorn.model.retrofit.MovieDbServices
-import com.luisg.popcorn.model.retrofit.response.Movie
-import com.luisg.popcorn.model.retrofit.response.PopularMoviesResponse
-import com.luisg.popcorn.model.retrofit.response.TopRatedMovie
-import com.luisg.popcorn.model.retrofit.response.TopRatedMoviesResponse
+import com.luisg.popcorn.model.retrofit.response.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,6 +17,9 @@ class MovieDbRepository {
     var movieDbClient: MovieDbClient? = null
     var popularMovies: MutableLiveData<List<Movie>>? = null
     var topRatedMovies: MutableLiveData<List<TopRatedMovie>>? = null
+    var movieDetail: MutableLiveData<MovieDetail>? = null
+
+    //var listGenres: MutableLiveData<List<GenreItemResult>>? = null
 
     init {
         movieDbClient = MovieDbClient.instance
@@ -60,7 +61,7 @@ class MovieDbRepository {
         val call: Call<TopRatedMoviesResponse>? = movieDbServices?.getTopRated()
         call?.enqueue(object : Callback<TopRatedMoviesResponse>{
             override fun onFailure(call: Call<TopRatedMoviesResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+                Toast.makeText(MyApp.instance, "Error en la conexión", Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(
@@ -76,4 +77,30 @@ class MovieDbRepository {
 
         return topRatedMovies
     }
+
+    fun getDatailMovie(movie_id: Int): MutableLiveData<MovieDetail>? {
+        if (movieDetail == null)
+            movieDetail = MutableLiveData()
+
+        val call = movieDbServices?.getMovieDetail(movie_id)
+
+        call?.enqueue(object : Callback<MovieDetail>{
+            override fun onFailure(call: Call<MovieDetail>, t: Throwable) {
+                Toast.makeText(MyApp.instance,"Error de conexión.",Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<MovieDetail>, response: Response<MovieDetail>) {
+
+                if (response.isSuccessful){
+                    movieDetail?.value = response.body()
+                } else {
+                    Toast.makeText(MyApp.instance,"Algo a ido mal.",Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
+        return movieDetail
+    }
+
+
 }

@@ -9,7 +9,11 @@
         android:id="@+id/navigation_movie"
         android:name="com.luisg.popcorn.view.MovieFragment"
         android:label="@string/title_movie"
-        tools:layout="@layout/fragment_movie" />
+        tools:layout="@layout/fragment_movie" >
+        <action
+            android:id="@+id/action_navigation_movie_to_movieDetailFragment2"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -22,4 +26,13 @@
         android:name="com.luisg.popcorn.view.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.luisg.popcorn.view.MovieDetailFragment"
+        android:label="fragment_movie_detail"
+        tools:layout="@layout/fragment_movie_detail" >
+        <action
+            android:id="@+id/action_movieDetailFragment_to_navigation_movie3"
+            app:destination="@id/navigation_movie" />
+    </fragment>
 </navigation>
