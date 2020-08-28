@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    tools:context=".view.MovieDetailFragment">
+    tools:context=".view.movie.MovieDetailFragment">
 
     <ImageView
         android:id="@+id/imageCover"
@@ -50,13 +50,16 @@
         android:id="@+id/txtTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:textColor="@android:color/white"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintStart_toEndOf="@+id/cardView2"
+        app:layout_constraintTop_toBottomOf="@+id/imageCover"
         tools:text="Stand de Los besos 2" />
 
     <ProgressBar
@@ -70,4 +73,82 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:cardBackgroundColor="@android:color/black"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageCover"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageCover">
+
+        <ImageView
+            android:id="@+id/imagePoster"
+            android:layout_width="150dp"
+            android:layout_height="220dp"
+            android:scaleType="centerCrop"
+            tools:src="@mipmap/ic_launcher" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/txtOverview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:justificationMode="inter_word"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2"
+        tools:text="Comienza a correrse la voz por las calles de Nueva Orleans de una misteriosa pastilla nueva que le confiere superpoderes únicos a cada persona que la consume. ¿La trampa? No sabes qué puede pasar hasta que la tomas... Algunos adquieren una piel a prueba de balas, invisibilidad y fuerza sobrehumana, mientras que otros padecen una reacción más letal. Con la llegada de la pastilla, la tasa de delitos de la ciudad escala a niveles peligrosos, por lo que un policía local (Joseph Gordon-Levitt) se une a una traficante de drogas adolescente (Dominique Fishback) y a un exsoldado motivado por un plan de venganza secreto (Jamie Foxx) para enfrentar con poder al poder. Tanto es así, que se arriesgan a tomar la pastilla con el objetivo de encontrar y detener al grupo responsable de su elaboración." />
+
+    <TextView
+        android:id="@+id/txtTagline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@android:color/secondary_text_light_nodisable"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/txtTitle"
+        app:layout_constraintStart_toStartOf="@+id/txtTitle"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+        tools:text="¿Qué arriesgarías por cinco minutos de pura energía?" />
+
+    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+        android:id="@+id/progressRanking"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:cpb_progress_max="100"
+        tools:cpb_progress="80"
+        android:layout_marginStart="16dp"
+        app:cpb_background_progressbar_color="@android:color/black"
+        app:cpb_progressbar_color="@android:color/holo_blue_dark"
+        app:cpb_progressbar_width="4dp"
+        app:cpb_round_border="true"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView2"
+        app:layout_constraintStart_toEndOf="@+id/cardView2" />
+
+    <TextView
+        android:id="@+id/txtRanking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/progressRanking"
+        app:layout_constraintEnd_toEndOf="@+id/progressRanking"
+        app:layout_constraintStart_toStartOf="@+id/progressRanking"
+        app:layout_constraintTop_toTopOf="@+id/progressRanking"
+        tools:text="7.5" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

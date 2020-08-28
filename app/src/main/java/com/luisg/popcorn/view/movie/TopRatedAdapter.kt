@@ -1,20 +1,18 @@
-package com.luisg.popcorn.view
+package com.luisg.popcorn.view.movie
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.luisg.popcorn.R
 import com.luisg.popcorn.common.Constants
-import com.luisg.popcorn.common.MyApp
-import com.luisg.popcorn.model.retrofit.response.Movie
+import com.luisg.popcorn.model.retrofit.response.TopRatedMovie
 
-class MovieAdapter(var mValues: List<Movie>, val movieListener: MovieListener) : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
+class TopRatedAdapter(var mValues: List<TopRatedMovie>, val movieListener: MovieListener) : RecyclerView.Adapter<TopRatedAdapter.ViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -30,19 +28,19 @@ class MovieAdapter(var mValues: List<Movie>, val movieListener: MovieListener) :
         val item = mValues[position]
 
         holder.txtTitleMovie.text = item.title
-        holder.txtGenre.text = item.genre_ids.toString()
+        holder.txtGenre.text = "Ciencia Ficción"
         holder.txtAverege.text = item.vote_average.toString()
         holder.imageCover.load(Constants.IMAGE_BASE_URL + item.poster_path){
             crossfade(true)
-            placeholder(R.drawable.ic_cine)
+            //placeholder(R.drawable.ic_cine)
         }
         holder.itemView.setOnClickListener{
             movieListener.getIdClicked(item.id)
         }
     }
 
-    fun setData(popularMovies: List<Movie>){
-        mValues = popularMovies
+    fun setData(topRatedMovie: List<TopRatedMovie>){
+        mValues = topRatedMovie
         notifyDataSetChanged()
     }
 

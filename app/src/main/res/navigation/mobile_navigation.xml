@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_movie"
-        android:name="com.luisg.popcorn.view.MovieFragment"
+        android:name="com.luisg.popcorn.view.movie.MovieFragment"
         android:label="@string/title_movie"
         tools:layout="@layout/fragment_movie" >
         <action
@@ -28,7 +28,7 @@
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/movieDetailFragment"
-        android:name="com.luisg.popcorn.view.MovieDetailFragment"
+        android:name="com.luisg.popcorn.view.movie.MovieDetailFragment"
         android:label="fragment_movie_detail"
         tools:layout="@layout/fragment_movie_detail" >
         <action
