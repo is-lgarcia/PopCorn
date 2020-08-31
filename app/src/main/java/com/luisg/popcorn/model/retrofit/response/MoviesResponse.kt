@@ -1,6 +1,8 @@
 package com.luisg.popcorn.model.retrofit.response
 
-data class PopularMoviesResponse(
+import com.luisg.popcorn.model.retrofit.response.data.Movie
+
+data class MoviesResponse(
     val page: Int,
     val results: List<Movie>,
     val total_pages: Int,

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.luisg.popcorn.R
 import com.luisg.popcorn.common.Constants
-import com.luisg.popcorn.model.retrofit.response.Movie
+import com.luisg.popcorn.model.retrofit.response.data.Movie
 
 class MovieAdapter(var mValues: List<Movie>, val movieListener: MovieListener) : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 

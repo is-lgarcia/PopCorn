@@ -1,5 +1,7 @@
 package com.luisg.popcorn.model.retrofit.response
 
+import com.luisg.popcorn.model.retrofit.response.data.*
+
 data class MovieDetail(
     val adult: Boolean,
     val backdrop_path: String,
@@ -27,6 +29,6 @@ data class MovieDetail(
     val vote_average: Double,
     val vote_count: Int
 ) {
-    constructor() : this(false,"",BelongsToCollection("",0,"",""),0, listOf(),"",0,"","","","",0.00,
+    constructor() : this(false,"", BelongsToCollection("",0,"",""),0, listOf(),"",0,"","","","",0.00,
     "", listOf(), listOf(),"",0,0, listOf(),"","","",false,00.00,0)
 }

@@ -23,24 +23,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+        <SearchView
             android:id="@+id/inputSearchMovie"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:autofillHints=""
+            android:baselineAligned="true"
+            android:background="@android:color/darker_gray"
             android:backgroundTint="@color/colorGray"
-            android:ems="10"
-            android:focusable="false"
-            android:foregroundTint="@color/colorGray"
-            android:hint="@string/edit_hint_search"
-            android:inputType="textPersonName"
-            android:textColor="@color/colorGray"
-            android:textColorHighlight="@android:color/white"
-            android:textColorHint="@color/colorGray"
-            android:textSize="24sp"
+            android:iconifiedByDefault="false"
+            android:queryHint="@string/edit_hint_search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_search_movie" />
@@ -80,7 +74,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_popular"
-            tools:itemCount="1"
+            tools:itemCount="3"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:orientation="horizontal"
             tools:listitem="@layout/movie_item" />
 
         <TextView
@@ -115,10 +111,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_top_rated"
-            tools:itemCount="1"
+            tools:itemCount="3"
             tools:listitem="@layout/movie_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

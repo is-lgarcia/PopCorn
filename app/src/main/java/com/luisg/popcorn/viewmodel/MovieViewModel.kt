@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.luisg.popcorn.model.MovieDbRepository
-import com.luisg.popcorn.model.retrofit.response.Movie
+import com.luisg.popcorn.model.retrofit.response.data.Movie
 import com.luisg.popcorn.model.retrofit.response.MovieDetail
 import com.luisg.popcorn.model.retrofit.response.TopRatedMovie
 
@@ -12,6 +12,7 @@ class MovieViewModel: ViewModel() {
     private var movieDetail: MutableLiveData<MovieDetail> = MutableLiveData()
     private var movieDbRepository: MovieDbRepository
     private var popularMovie: LiveData<List<Movie>>
+    private var searchMovie: LiveData<List<Movie>> = MutableLiveData()
     private var topRatedMovie: LiveData<List<TopRatedMovie>>
 
     init {
@@ -33,7 +34,9 @@ class MovieViewModel: ViewModel() {
         return movieDetail
     }
 
-    /*fun updateMovieDetail(){
-        movieDetail.postValue(movie)
-    }*/
+    fun getSearchMovie(query: String): LiveData<List<Movie>>{
+        searchMovie = movieDbRepository.getSearchMovie(query)!!
+        return searchMovie
+
+    }
 }

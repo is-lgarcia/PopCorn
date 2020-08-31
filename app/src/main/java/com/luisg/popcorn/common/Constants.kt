@@ -8,5 +8,6 @@ class Constants {
         public val URL_PARAM_API_KEY = "api_key"
         public val URL_PARAM_LANGUAGE = "language"
         public val SPANISH_LANGUAGE = "es-ES"
+        public val URL_PARAM_QUERY = "query"
     }
 }

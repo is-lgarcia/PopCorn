@@ -4,7 +4,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_search">Buscar</string>
-    <string name="edit_hint_search">Pelicula, Actor, Director...</string>
+    <string name="edit_hint_search">Peliculas…</string>
     <string name="title_popular">Populares</string>
     <string name="see_all">Ver todo</string>
     <string name="title_top_rated">Mejor Valorados</string>

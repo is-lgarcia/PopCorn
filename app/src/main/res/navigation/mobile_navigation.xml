@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_movie_to_movieDetailFragment2"
             app:destination="@id/movieDetailFragment" />
+        <action
+            android:id="@+id/action_navigation_movie_to_searchMovieFragment"
+            app:destination="@id/searchMovieFragment" />
     </fragment>
 
     <fragment
@@ -30,9 +33,13 @@
         android:id="@+id/movieDetailFragment"
         android:name="com.luisg.popcorn.view.movie.MovieDetailFragment"
         android:label="fragment_movie_detail"
-        tools:layout="@layout/fragment_movie_detail" >
+        tools:layout="@layout/fragment_movie_detail" />
+    <fragment
+        android:id="@+id/searchMovieFragment"
+        android:name="com.luisg.popcorn.view.movie.SearchMovieFragment"
+        android:label="SearchMovieFragment" >
         <action
-            android:id="@+id/action_movieDetailFragment_to_navigation_movie3"
-            app:destination="@id/navigation_movie" />
+            android:id="@+id/action_searchMovieFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
     </fragment>
 </navigation>

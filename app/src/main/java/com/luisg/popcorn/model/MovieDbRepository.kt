@@ -1,13 +1,13 @@
 package com.luisg.popcorn.model
 
 
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.luisg.popcorn.common.MyApp
 import com.luisg.popcorn.model.retrofit.MovieDbClient
 import com.luisg.popcorn.model.retrofit.MovieDbServices
 import com.luisg.popcorn.model.retrofit.response.*
+import com.luisg.popcorn.model.retrofit.response.data.Movie
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,10 +16,9 @@ class MovieDbRepository {
     var movieDbServices: MovieDbServices? = null
     var movieDbClient: MovieDbClient? = null
     var popularMovies: MutableLiveData<List<Movie>>? = null
+    var searchMovies: MutableLiveData<List<Movie>>? = null
     var topRatedMovies: MutableLiveData<List<TopRatedMovie>>? = null
     var movieDetail: MutableLiveData<MovieDetail>? = null
-
-    //var listGenres: MutableLiveData<List<GenreItemResult>>? = null
 
     init {
         movieDbClient = MovieDbClient.instance
@@ -30,18 +29,18 @@ class MovieDbRepository {
 
     fun popularMovies(): MutableLiveData<List<Movie>>? {
         if (popularMovies == null) {
-            popularMovies = MutableLiveData<List<Movie>>()
+            popularMovies = MutableLiveData()
         }
 
-        val call: Call<PopularMoviesResponse>? = movieDbServices?.getPopularMovie()
-        call?.enqueue(object : Callback<PopularMoviesResponse> {
-            override fun onFailure(call: Call<PopularMoviesResponse>, t: Throwable) {
+        val call: Call<MoviesResponse>? = movieDbServices?.getPopularMovie()
+        call?.enqueue(object : Callback<MoviesResponse> {
+            override fun onFailure(call: Call<MoviesResponse>, t: Throwable) {
                 Toast.makeText(MyApp.instance, "Error en la conexión", Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(
-                call: Call<PopularMoviesResponse>,
-                response: Response<PopularMoviesResponse>
+                call: Call<MoviesResponse>,
+                response: Response<MoviesResponse>
             ) {
                 if (response.isSuccessful) {
                     popularMovies?.value = response.body()?.results
@@ -55,7 +54,7 @@ class MovieDbRepository {
 
     fun topRatedMovies(): MutableLiveData<List<TopRatedMovie>>? {
         if (topRatedMovies == null) {
-            topRatedMovies = MutableLiveData<List<TopRatedMovie>>()
+            topRatedMovies = MutableLiveData()
         }
 
         val call: Call<TopRatedMoviesResponse>? = movieDbServices?.getTopRated()
@@ -102,5 +101,30 @@ class MovieDbRepository {
         return movieDetail
     }
 
+    fun getSearchMovie(query: String): MutableLiveData<List<Movie>>? {
+
+        if (searchMovies == null)
+            searchMovies = MutableLiveData()
+
+        val call = movieDbServices?.getSearchMovie(query)
+
+        call?.enqueue(object : Callback<MoviesResponse>{
+            override fun onResponse(
+                call: Call<MoviesResponse>,
+                response: Response<MoviesResponse>
+            ) {
+                if (response.isSuccessful){
+                    searchMovies?.value = response.body()?.results
+                }
+            }
+
+            override fun onFailure(call: Call<MoviesResponse>, t: Throwable) {
+                Toast.makeText(MyApp.instance, "Error en la conexión", Toast.LENGTH_LONG).show()
+            }
+
+        })
+
+        return searchMovies
+    }
 
 }

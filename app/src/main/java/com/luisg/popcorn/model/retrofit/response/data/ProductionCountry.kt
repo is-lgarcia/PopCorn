@@ -1,4 +1,4 @@
-package com.luisg.popcorn.model.retrofit.response
+package com.luisg.popcorn.model.retrofit.response.data
 
 data class ProductionCountry(
     val iso_3166_1: String,
