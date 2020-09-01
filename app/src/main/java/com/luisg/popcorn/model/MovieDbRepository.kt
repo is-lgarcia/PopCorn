@@ -8,6 +8,7 @@ import com.luisg.popcorn.model.retrofit.MovieDbClient
 import com.luisg.popcorn.model.retrofit.MovieDbServices
 import com.luisg.popcorn.model.retrofit.response.*
 import com.luisg.popcorn.model.retrofit.response.data.Movie
+import com.luisg.popcorn.model.retrofit.response.data.MovieDetail
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,8 +17,8 @@ class MovieDbRepository {
     var movieDbServices: MovieDbServices? = null
     var movieDbClient: MovieDbClient? = null
     var popularMovies: MutableLiveData<List<Movie>>? = null
+    var topMovies: MutableLiveData<List<Movie>>? = null
     var searchMovies: MutableLiveData<List<Movie>>? = null
-    var topRatedMovies: MutableLiveData<List<TopRatedMovie>>? = null
     var movieDetail: MutableLiveData<MovieDetail>? = null
 
     init {
@@ -52,29 +53,29 @@ class MovieDbRepository {
         return popularMovies
     }
 
-    fun topRatedMovies(): MutableLiveData<List<TopRatedMovie>>? {
-        if (topRatedMovies == null) {
-            topRatedMovies = MutableLiveData()
+    fun topRatedMovies(): MutableLiveData<List<Movie>>? {
+        if (topMovies == null) {
+            topMovies = MutableLiveData()
         }
 
-        val call: Call<TopRatedMoviesResponse>? = movieDbServices?.getTopRated()
-        call?.enqueue(object : Callback<TopRatedMoviesResponse>{
-            override fun onFailure(call: Call<TopRatedMoviesResponse>, t: Throwable) {
+        val call: Call<MoviesResponse>? = movieDbServices?.getTopRated()
+        call?.enqueue(object : Callback<MoviesResponse>{
+            override fun onFailure(call: Call<MoviesResponse>, t: Throwable) {
                 Toast.makeText(MyApp.instance, "Error en la conexión", Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(
-                call: Call<TopRatedMoviesResponse>,
-                response: Response<TopRatedMoviesResponse>
+                call: Call<MoviesResponse>,
+                response: Response<MoviesResponse>
             ) {
                 if (response.isSuccessful){
-                    topRatedMovies?.value = response.body()?.results
+                    topMovies?.value = response.body()?.results
                 }
             }
 
         })
 
-        return topRatedMovies
+        return topMovies
     }
 
     fun getDatailMovie(movie_id: Int): MutableLiveData<MovieDetail>? {

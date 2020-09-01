@@ -17,16 +17,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.luisg.popcorn.R
 import com.luisg.popcorn.model.retrofit.response.data.Movie
-import com.luisg.popcorn.model.retrofit.response.TopRatedMovie
 import com.luisg.popcorn.viewmodel.MovieViewModel
 
 class MovieFragment: Fragment(), MovieListener {
 
     private val model: MovieViewModel by activityViewModels()
-    private lateinit var adapter: MovieAdapter
-    private lateinit var adapterRated: TopRatedAdapter
+    private lateinit var adapterPopular: MovieAdapter
+    private lateinit var adapterRated: MovieAdapter
     private var popularMovies: List<Movie> = ArrayList()
-    private var topRatedMovie: List<TopRatedMovie> = ArrayList()
+    private var topMovie: List<Movie> = ArrayList()
     private lateinit var recyclerPopularMovie: RecyclerView
     private lateinit var recyclerTopRatedMovie: RecyclerView
     private lateinit var searchView: SearchView
@@ -45,34 +44,35 @@ class MovieFragment: Fragment(), MovieListener {
     }
 
     private fun loadTopRatedMovies(root: View) {
-        adapterRated = TopRatedAdapter(topRatedMovie, this)
+        adapterRated = MovieAdapter(topMovie, this)
         recyclerTopRatedMovie = root.findViewById(R.id.recyclerTopRatedMovies)
         recyclerTopRatedMovie.setHasFixedSize(true)
         recyclerTopRatedMovie.layoutManager = LinearLayoutManager(
             activity,
             LinearLayoutManager.HORIZONTAL, false
         )
+
         recyclerTopRatedMovie.adapter = adapterRated
 
         model.getTopRatedMovies().observe(viewLifecycleOwner, Observer {
-            topRatedMovie = it
-            adapterRated.setData(topRatedMovie)
+            topMovie = it
+            adapterRated.setData(topMovie)
         })
     }
 
     private fun loadPopularMovies(root: View) {
-        adapter = MovieAdapter(popularMovies, this)
+        adapterPopular = MovieAdapter(popularMovies, this)
         recyclerPopularMovie = root.findViewById(R.id.recyclerPopularMovies)
         recyclerPopularMovie.setHasFixedSize(true)
         recyclerPopularMovie.layoutManager = LinearLayoutManager(
             activity,
             LinearLayoutManager.HORIZONTAL, false
         )
-        recyclerPopularMovie.adapter = adapter
+        recyclerPopularMovie.adapter = adapterPopular
 
         model.getPopularMovies().observe(viewLifecycleOwner, Observer {
             popularMovies = it
-            adapter.setData(popularMovies)
+            adapterPopular.setData(popularMovies)
         })
     }
 

@@ -11,7 +11,8 @@ import com.luisg.popcorn.R
 import com.luisg.popcorn.common.Constants
 import com.luisg.popcorn.model.retrofit.response.data.Movie
 
-class MovieAdapter(var mValues: List<Movie>, val movieListener: MovieListener) : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
+class MovieAdapter(var mValues: List<Movie>, val movieListener: MovieListener):
+    RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)

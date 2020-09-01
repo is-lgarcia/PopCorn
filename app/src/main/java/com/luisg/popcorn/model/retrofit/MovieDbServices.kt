@@ -1,8 +1,7 @@
 package com.luisg.popcorn.model.retrofit
 
-import com.luisg.popcorn.model.retrofit.response.MovieDetail
+import com.luisg.popcorn.model.retrofit.response.data.MovieDetail
 import com.luisg.popcorn.model.retrofit.response.MoviesResponse
-import com.luisg.popcorn.model.retrofit.response.TopRatedMoviesResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -14,7 +13,7 @@ interface MovieDbServices {
     fun getPopularMovie(): Call<MoviesResponse>
 
     @GET("movie/top_rated")
-    fun getTopRated(): Call<TopRatedMoviesResponse>
+    fun getTopRated(): Call<MoviesResponse>
 
     @GET("movie/{movie_id}")
     fun getMovieDetail(@Path("movie_id") movie_id: Int): Call<MovieDetail>

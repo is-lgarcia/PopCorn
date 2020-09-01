@@ -1,6 +1,5 @@
 package com.luisg.popcorn.view.movie
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,7 +13,7 @@ import coil.api.load
 import coil.size.Scale
 import com.luisg.popcorn.R
 import com.luisg.popcorn.common.Constants
-import com.luisg.popcorn.model.retrofit.response.MovieDetail
+import com.luisg.popcorn.model.retrofit.response.data.MovieDetail
 import com.luisg.popcorn.viewmodel.MovieViewModel
 import kotlinx.android.synthetic.main.fragment_movie_detail.*
 
